@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rafael de Sena Selvagio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Países</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <div>
+            <h4 id="exibeUser"></h4>
+        </div>
+
+        <!-- Nav  -->
+        <ul class="nav nav-tabs" id="myTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="lista-tab" data-toggle="tab" href="#lista">Produtos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="busca-tab" data-toggle="tab" href="#busca">Ranking</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="cadastro-tab" data-toggle="tab" href="#cadastro">Cadastrar</a>
+            </li>
+        </ul>
+
+        <!-- Tab -->
+        <div class="tab-content mt-2">
+
+            <!--Aba Meus Produtos -->
+            <div class="tab-pane active" id="lista">
+                <h4>Meus Produtos</h4>
+                
+                <table class="table table-bordered" id="tabela_produtos"></table>
+            </div>
+
+            <!--Aba Ranking de produtos mais vendidos -->
+            <div class="tab-pane" id="busca">
+                <h4>Ranking de Produtos mais Vendidos</h4>
+
+                <table class="table table-bordered" id="tabela_ranking"></table>
+                
+            </div>
+
+            <!--Aba Cadastro de novos produtos-->
+            <div class="tab-pane" id="cadastro">
+                <h4>Cadastrar Produtos</h4>
+                <!-- Conteúdo do Cadastro -->
+                <form>
+                        <!-- Nome -->
+                    <div class="form-group">
+                        <label for="productName">Nome:</label>
+                        <input type="text" class="form-control" id="productName" required placeholder="Nome do Produto">
+                    </div>
+                        <!-- Descrição -->
+                    <div class="form-group">
+                        <label for="description">Descrição:</label>
+                        <input type="text" class="form-control" id="description" required placeholder="Descrição do Produto">
+                    </div>
+                        <!-- Preço -->
+                    <div class="form-group">
+                        <label for="price">Preço:</label>
+                        <input type="number" class="form-control" id="price" required placeholder="Preço do Produto">
+                    </div>
+                        <!-- Categoria -->
+                    <div class="form-group">
+                        <label for="Category">Categoria:</label>
+                        <div id="selecaoDeCategorias">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success" id="btn_cadastra">Cadastrar</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Inclua o SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/gerenciamentoDeVendas.js"></script>
+</body>
+</html>
+
