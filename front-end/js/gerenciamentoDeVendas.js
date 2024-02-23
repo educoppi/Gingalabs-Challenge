@@ -120,12 +120,6 @@ function showTopSellingProducts() {
 }
 
 function registerNewProduct() {
-
-    //
-    //
-    //
-    //
-    //FORMA DE IMPEDIR QUE O BOTAO SEJA CLICADO SEM QUE TODOS OS CAMPOS TENHAM ALGUMA INFORMAÇÃO
     let regex = /^([a-zA-Zà-úÀ-Ú0-9çÇ]|_|\s)+$/;
 
     if (!regex.test(document.getElementById("productName").value)) {
@@ -153,6 +147,24 @@ function registerNewProduct() {
         category: category,
         ownerUserId: ownerUserId
     };
+
+    if(hasEmptyValues(data)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Preencha todos os campos!'
+        });
+        return;
+    }
+
+    function hasEmptyValues(data) {
+        for (var value in data) {
+            if (data.hasOwnProperty(value) && (data[value] === '' || data[value] === null || data[value] === undefined)) {
+                return true; // Retorna true se encontrar algum atributo vazio
+            }
+        }
+        return false; // Retorna false se nenhum atributo estiver vazio
+    }
+    
 
     const option = {
         method: 'POST',
@@ -322,9 +334,36 @@ document.getElementById('busca-tab').onclick = function () {
 };
 
 document.getElementById('cadastro-tab').onclick = function () {
-    getCategories();
+    getCategories();  
 }
 
 document.getElementById('btn_cadastra').onclick = function () {
     registerNewProduct();
 }
+
+
+function main(){
+fetch("https://api.openai.com/v1/completions", {
+    method: "POST", 
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + "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",
+
+    },
+    body: JSON.stringify({
+        model: "gpt-4",
+        prompt: "eu estou vendedendo esses itens Mouse 8 Cadeira 11 Lâmpada 17 Vaso 38 gostaria de sugestões de mais produtos que eu possa vender",
+        max_tokens: "300"
+    }),
+})
+.then((resposta) => resposta.json())
+.then((dados) =>{
+    console.log(dados)
+}).catch((erro) =>{
+    console.log(erro);
+})
+}
+
+  
+main();
