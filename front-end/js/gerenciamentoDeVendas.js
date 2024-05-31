@@ -159,10 +159,10 @@ function registerNewProduct() {
     function hasEmptyValues(data) {
         for (var value in data) {
             if (data.hasOwnProperty(value) && (data[value] === '' || data[value] === null || data[value] === undefined)) {
-                return true; // Retorna true se encontrar algum atributo vazio
+                return true; 
             }
         }
-        return false; // Retorna false se nenhum atributo estiver vazio
+        return false; 
     }
     
 
@@ -179,7 +179,6 @@ function registerNewProduct() {
             if (!response.ok) {
                 throw new Error('Erro ao cadastrar produto');
             }
-            // Se a resposta for OK, exibe o alerta de sucesso
             Swal.fire({
                 icon: 'success',
                 title: 'Cadastro realizado com sucesso!',
@@ -188,7 +187,6 @@ function registerNewProduct() {
             });
         })
         .catch(error => {
-            // Se ocorrer um erro, exibe o alerta de falha
             Swal.fire({
                 icon: 'error',
                 title: 'Erro ao cadastrar produto',
@@ -196,7 +194,6 @@ function registerNewProduct() {
             });
         });
 
-    // Limpa os campos do formulário após o cadastro
     document.getElementById("productName").value = "";
     document.getElementById("description").value = "";
     document.getElementById("price").value = "";
@@ -290,7 +287,7 @@ function getCategories() {
             // adiciona o input ao container
             document.getElementById("selecaoDeCategorias").appendChild(textInput);
 
-            // função para atualizar o valor do selct sempre que é realizada uma seleção de uma opção
+            // função para atualizar o valor do select sempre que é realizada uma seleção de uma opção
             // e determinar que categoryLocation é true, sendo assim a variavel category se localiza
             // no valor de select
             function updateSelectValue() {
@@ -340,30 +337,3 @@ document.getElementById('cadastro-tab').onclick = function () {
 document.getElementById('btn_cadastra').onclick = function () {
     registerNewProduct();
 }
-
-
-function main(){
-fetch("https://api.openai.com/v1/completions", {
-    method: "POST", 
-    headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + "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",
-
-    },
-    body: JSON.stringify({
-        model: "gpt-4",
-        prompt: "eu estou vendedendo esses itens Mouse 8 Cadeira 11 Lâmpada 17 Vaso 38 gostaria de sugestões de mais produtos que eu possa vender",
-        max_tokens: "300"
-    }),
-})
-.then((resposta) => resposta.json())
-.then((dados) =>{
-    console.log(dados)
-}).catch((erro) =>{
-    console.log(erro);
-})
-}
-
-  
-main();
